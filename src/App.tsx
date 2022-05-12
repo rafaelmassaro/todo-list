@@ -4,7 +4,8 @@ import GlobalStyles from './styles/global';
 
 import usePersistedState from './utils/usePersistedState';
 
-import background from './assets/images/bg-desktop-dark.jpg';
+import backgroundLight from './assets/images/bg-desktop-light.jpg';
+import backgroundDark from './assets/images/bg-desktop-dark.jpg';
 import light from './styles/themes/light';
 import dark from './styles/themes/dark';
 
@@ -17,9 +18,8 @@ export default function App(){
     <ThemeProvider theme={theme}>
       <div>
         <GlobalStyles />
-        <img src={background} alt="background-image" />
+        <img src={theme.title === 'light' ? backgroundLight : backgroundDark} alt="background-image" />
         <button onClick={toggleTheme}>Toggle</button>
-        <h1>Hello World</h1>
       </div>
     </ThemeProvider>
   )

@@ -10,6 +10,10 @@ declare module 'styled-components'{
 
             background: string,
             text: string,
-        }
+        },
+        
+        bg: string,
+        bgMobile: string,
+        
     }
 }

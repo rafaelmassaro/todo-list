@@ -9,6 +9,7 @@ import usePersistedState from './utils/usePersistedState';
 import light from './styles/themes/light';
 import dark from './styles/themes/dark';
 import { Header } from './components/Header';
+import { CustomCheckbox } from './components/CustomCheckbox';
 
 export default function App(){
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
@@ -21,6 +22,10 @@ export default function App(){
     <ThemeProvider theme={theme}>
         <Container>
           <Header selectedTheme={theme.title} toggleTheme={toggleTheme} />
+
+          <CustomCheckbox>Item 1</CustomCheckbox>
+          <CustomCheckbox>Item 2</CustomCheckbox>
+          <CustomCheckbox>Item 3</CustomCheckbox>
         </Container>
 
         <GlobalStyles />

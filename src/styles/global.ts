@@ -7,6 +7,8 @@ export default createGlobalStyle`
         box-sizing: border-box;
         font-size: 62.5%;
         font-family: 'Josefin Sans', sans-serif;
+        list-syle: none;
+        text-decoration: none;
     }
 
     body{

@@ -6,10 +6,9 @@ interface Props{
 
 export const CheckboxContainer = styled.div(({checked}: Props) => (
     `
-    width: 100%;
-    height: 35px;
-    padding-left: 5px;
-    margin: 0px 4px;
+    height: 3.5rem;
+    padding-left: .5rem;
+    margin: 0 .4rem;
     cursor: pointer;
     
     display: flex;
@@ -23,20 +22,21 @@ export const HiddenCheckbox = styled.input.attrs({type: 'checkbox'})`
     margin: -1px;
     padding: 0;
 `;
-export const Text = styled.label(({checked}:Props) => (
+export const Text = styled.label<Props>
    `
-    font-size: 20px;
-    color: ${checked ? '#fff' : '#555'};
+    font-size: 1.8rem;
+    color: ${props=> props.checked ? props => props.theme.colors.checkedListColor : props => props.theme.colors.listColor};
     cursor: pointer;
-   ` 
-));
+    text-decoration: ${props=> props.checked ? 'line-through' : 'initial'};
+   `;
+
 export const StyledCheckbox = styled.label(({checked}:Props) => (
     `
-    width: 25px;
-    height: 25px;
+    width: 2.5rem;
+    height: 2.5rem;
     margin-right: 2.5rem;
     border-radius: 50%;
-    border: 1px solid white;
+    border: 1px solid ${checked ? 'transparent' : 'white'};
     background: ${checked ? 'linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%))' : 'transparent'};
     display: flex;
     justify-content: center;
@@ -44,16 +44,22 @@ export const StyledCheckbox = styled.label(({checked}:Props) => (
     cursor: pointer;
     position: relative;
 
-    &:hover{
-        border-radius: 50px;
-        border: 1px solid transparent;
-        background: linear-gradient(45deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
-        -webkit-mask:
-            linear-gradient(#fff 0 0) padding-box, 
-            linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor; 
-                mask-composite: exclude; 
-    }
+    ${!checked && `
+
+        &:hover{
+            border-radius: 5rem;
+            border: 1px solid transparent;
+            background: linear-gradient(45deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
+            -webkit-mask:
+                linear-gradient(#fff 0 0) padding-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; 
+                    mask-composite: exclude; 
+        }
+
+    `}
+
+    
 
     img {
         display: ${checked ? 'flex' : 'none'};

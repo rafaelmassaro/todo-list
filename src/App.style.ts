@@ -5,3 +5,8 @@ export const Container = styled.header`
     width: min(540px, 90%);
     height: 100vh;
 `;
+
+export const AreaList = styled.div`
+    background-color: ${props => props.theme.colors.backgroundList};
+    border-radius: 5px;
+`

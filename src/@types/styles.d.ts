@@ -9,6 +9,9 @@ declare module 'styled-components'{
             secondary: string,
 
             background: string,
+            backgroundList: string,
+            listColor: string,
+            checkedListColor: string,
             text: string,
         },
         

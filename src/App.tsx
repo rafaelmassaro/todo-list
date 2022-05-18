@@ -24,6 +24,7 @@ export default function App(){
   const [list, setList] = useState<ListProps[]>([
     {id: 1, name: 'Comprar pão', done: false},
     {id: 2, name: 'Estudar', done: false},
+    {id: 3, name: 'Comer', done: false}
   ])
 
   const toggleTheme = () => setTheme(theme.title === 'light' ? dark : light)
@@ -35,7 +36,7 @@ export default function App(){
 
           <AreaList>
             {list.map((item, index) => (
-              <ListItem key={index}  item={item} />
+              <ListItem key={index} item={item} />
             ))}
           </AreaList>
         </Container>

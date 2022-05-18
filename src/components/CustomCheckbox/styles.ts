@@ -30,21 +30,21 @@ export const Text = styled.label<Props>
     text-decoration: ${props=> props.checked ? 'line-through' : 'initial'};
    `;
 
-export const StyledCheckbox = styled.label(({checked}:Props) => (
+export const StyledCheckbox = styled.label<Props>
     `
     width: 2.5rem;
     height: 2.5rem;
     margin-right: 2.5rem;
     border-radius: 50%;
-    border: 1px solid ${checked ? 'transparent' : 'white'};
-    background: ${checked ? 'linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%))' : 'transparent'};
+    border: 1px solid ${props => props.checked ? 'transparent' : props => props.theme.colors.checkedListColor};
+    background: ${props => props.checked ? 'linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%))' : 'transparent'};
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     position: relative;
 
-    ${!checked && `
+    ${props => props.checked === false && `
 
         &:hover{
             border-radius: 5rem;
@@ -62,8 +62,7 @@ export const StyledCheckbox = styled.label(({checked}:Props) => (
     
 
     img {
-        display: ${checked ? 'flex' : 'none'};
+        display: ${props => props.checked ? 'flex' : 'none'};
     }
-
     `
-));
+;

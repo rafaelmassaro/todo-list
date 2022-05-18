@@ -5,7 +5,7 @@ export default {
         primary: '#c62e65',
         secondary: '#d63af9',
 
-        background: 'hsl(0, 0%, 98%)',
+        background: 'hsl(236, 33%, 92%)',
         backgroundList: 'hsl(0, 0%, 98%)',
         listColor: 'hsl(235, 19%, 35%)',
         checkedListColor: 'hsl(233, 11%, 84%)',

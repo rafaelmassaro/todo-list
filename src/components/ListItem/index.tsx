@@ -7,9 +7,10 @@ import { useState } from "react";
 
 interface Props{
     item: ListProps;
+    deleteItem: (id: number) => void;
 }
 
-export function ListItem({item}:Props){
+export function ListItem({item, deleteItem}:Props){
     const [newItem, setNewItem] = useState<ListProps>(item)
 
 
@@ -29,7 +30,9 @@ export function ListItem({item}:Props){
                 {newItem.name}
             </CustomCheckbox>
 
-            <button>
+            <button
+                onClick={() => deleteItem(item.id)}
+            >
                 <img src={iconCross} alt="Icon Cross" />
             </button>
         </Container>

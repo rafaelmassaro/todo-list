@@ -32,13 +32,25 @@ export default function App(){
 
   const addItem = (taskName:string) => {
 
+    // const taskId = list[list.length - 1].id + 1;
+
     const updateList = [...list];
     updateList.push({
-      id: list.length,
+      id: updateList.length + 1,
       name: taskName,
       done: false,
     });
+    console.log(updateList)
     setList(updateList);
+  }
+
+  const deleteItem = (id: number) => {
+
+    const newList = list.filter(item => item.id !== id);
+
+    setList(newList)
+    console.log(newList)
+    
   }
 
   return(
@@ -49,8 +61,12 @@ export default function App(){
           <Input addItem={addItem} />
 
           <AreaList>
-            {list.map((item, index) => (
-              <ListItem key={index} item={item} />
+            {list.map((item) => (
+              <ListItem 
+                key={item.id} 
+                item={item}
+                deleteItem={deleteItem} 
+              />
             ))}
           </AreaList>
         </Container>

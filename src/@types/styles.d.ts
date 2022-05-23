@@ -13,6 +13,8 @@ declare module 'styled-components'{
             listColor: string,
             checkedListColor: string,
             text: string,
+            buttonText: string,
+            buttonHover: string,
         },
         
         bg: string,

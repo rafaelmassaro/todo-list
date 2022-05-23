@@ -12,6 +12,7 @@ import { Header } from './components/Header';
 import { useState } from 'react';
 import { ListItem } from './components/ListItem';
 import { Input } from './components/Input';
+import { Footer } from './components/Footer';
 
 export interface ListProps {
   id: number;
@@ -69,6 +70,7 @@ export default function App(){
               />
             ))}
           </AreaList>
+          <Footer />
         </Container>
         <GlobalStyles />
     </ThemeProvider>

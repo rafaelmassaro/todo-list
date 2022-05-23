@@ -8,5 +8,5 @@ export const Container = styled.header`
 
 export const AreaList = styled.div`
     background-color: ${props => props.theme.colors.backgroundList};
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
 `

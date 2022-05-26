@@ -9,25 +9,21 @@ import usePersistedState from './utils/usePersistedState';
 import light from './styles/themes/light';
 import dark from './styles/themes/dark';
 import { Header } from './components/Header';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { ListItem } from './components/ListItem';
 import { Input } from './components/Input';
 import { Footer } from './components/Footer';
+import  { TodoContext } from './contexts/todocontext';
 
-export interface ListProps {
-  id: number;
-  name: string;
-  done: boolean;
-}
 
 export default function App(){
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
   
-  const [list, setList] = useState<ListProps[]>([
-    {id: 1, name: 'Comprar pão', done: false},
-    {id: 2, name: 'Estudar', done: false},
-    {id: 3, name: 'Comer', done: false}
-  ])
+  const { list } = useContext(TodoContext);
+
+  function setList(args: any){
+
+  }
 
   const toggleTheme = () => setTheme(theme.title === 'light' ? dark : light);
 
@@ -56,22 +52,26 @@ export default function App(){
 
   return(
     <ThemeProvider theme={theme}>
-        <Container>
-          <Header selectedTheme={theme.title} toggleTheme={toggleTheme} />
 
-          <Input addItem={addItem} />
+        
+          <Container>
+            <Header selectedTheme={theme.title} toggleTheme={toggleTheme} />
 
-          <AreaList>
-            {list.map((item) => (
-              <ListItem 
-                key={item.id} 
-                item={item}
-                deleteItem={deleteItem} 
-              />
-            ))}
-          </AreaList>
-          <Footer />
-        </Container>
+            <Input addItem={addItem} />
+
+            <AreaList>
+              {list.map((item) => (
+                <ListItem 
+                  key={item.id} 
+                  item={item}
+                  deleteItem={deleteItem} 
+                />
+              ))}
+            </AreaList>
+            <Footer />
+          </Container>
+        
+
         <GlobalStyles />
     </ThemeProvider>
   )

@@ -1,4 +1,4 @@
-import { ListProps } from "../../App"
+import { ListProps } from "../../contexts/todocontext"
 import { CustomCheckbox } from "../CustomCheckbox"
 import { Container } from "./styles"
 

@@ -11,7 +11,7 @@ export function Input({addItem}: Props){
 
     function handleKeyUp(e: KeyboardEvent){
 
-        if(e.code == "Enter" && newTask !== ''){
+        if(e.code === "Enter" && newTask !== ''){
             
             addItem(newTask);
             setNewTask('');

@@ -2,6 +2,8 @@ import { useState, createContext, ReactNode } from "react";
 
 interface ContextProps{
     list: ListProps[];
+    addTodo: (todoName: string) => void;
+    deleteTodo: (id: number) => void;
 }
 
 interface ProviderProps{
@@ -23,12 +25,24 @@ export default function TodoContextProvider({children}: ProviderProps){
         {id: 3, name: 'Comer', done: false}
     ])
 
-    
+    function addTodo(taskName:string){
+        const updateList = [...list];
+        updateList.push({
+          id: updateList.length + 1,
+          name: taskName,
+          done: false,
+        });
+        setList(updateList);
+    }
 
+    function deleteTodo(id: number){
+        const newList = list.filter(item => item.id !== id);
+        setList(newList);
+    }
     
 
     return(
-        <TodoContext.Provider value={{ list }}>
+        <TodoContext.Provider value={{ list, addTodo, deleteTodo }}>
             {children}
         </TodoContext.Provider>
     )

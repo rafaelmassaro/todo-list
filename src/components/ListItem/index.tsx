@@ -1,18 +1,18 @@
-import { ListProps } from "../../contexts/todocontext"
+import { ListProps, TodoContext } from "../../contexts/todocontext"
 import { CustomCheckbox } from "../CustomCheckbox"
 import { Container } from "./styles"
 
 import iconCross from '../../assets/images/icon-cross.svg';
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 interface Props{
     item: ListProps;
-    deleteItem: (id: number) => void;
 }
 
-export function ListItem({item, deleteItem}:Props){
+export function ListItem({item}:Props){
     const [newItem, setNewItem] = useState<ListProps>(item)
 
+    const { deleteTodo } = useContext(TodoContext);
 
     function updateItem(){
         const updatedItem = {
@@ -31,7 +31,7 @@ export function ListItem({item, deleteItem}:Props){
             </CustomCheckbox>
 
             <button
-                onClick={() => deleteItem(item.id)}
+                onClick={() => deleteTodo(item.id)}
             >
                 <img src={iconCross} alt="Icon Cross" />
             </button>

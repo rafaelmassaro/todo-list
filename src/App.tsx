@@ -21,34 +21,8 @@ export default function App(){
   
   const { list } = useContext(TodoContext);
 
-  function setList(args: any){
-
-  }
-
   const toggleTheme = () => setTheme(theme.title === 'light' ? dark : light);
 
-  const addItem = (taskName:string) => {
-
-    // const taskId = list[list.length - 1].id + 1;
-
-    const updateList = [...list];
-    updateList.push({
-      id: updateList.length + 1,
-      name: taskName,
-      done: false,
-    });
-    console.log(updateList)
-    setList(updateList);
-  }
-
-  const deleteItem = (id: number) => {
-
-    const newList = list.filter(item => item.id !== id);
-
-    setList(newList)
-    console.log(newList)
-    
-  }
 
   return(
     <ThemeProvider theme={theme}>
@@ -57,14 +31,13 @@ export default function App(){
           <Container>
             <Header selectedTheme={theme.title} toggleTheme={toggleTheme} />
 
-            <Input addItem={addItem} />
+            <Input />
 
             <AreaList>
               {list.map((item) => (
                 <ListItem 
                   key={item.id} 
-                  item={item}
-                  deleteItem={deleteItem} 
+                  item={item} 
                 />
               ))}
             </AreaList>

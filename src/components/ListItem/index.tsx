@@ -1,9 +1,9 @@
-import { ListProps } from "../../App"
 import { CustomCheckbox } from "../CustomCheckbox"
 import { Container } from "./styles"
 
 import iconCross from '../../assets/images/icon-cross.svg';
 import { useState } from "react";
+import { ListProps } from "../../contexts/list";
 
 interface Props{
     item: ListProps;

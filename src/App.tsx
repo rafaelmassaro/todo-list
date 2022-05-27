@@ -9,31 +9,25 @@ import usePersistedState from './utils/usePersistedState';
 import light from './styles/themes/light';
 import dark from './styles/themes/dark';
 import { Header } from './components/Header';
-import { useState } from 'react';
+import { useContext } from 'react';
 import { ListItem } from './components/ListItem';
 import { Input } from './components/Input';
 import { Footer } from './components/Footer';
 
-export interface ListProps {
-  id: number;
-  name: string;
-  done: boolean;
-}
+import { ListContext } from './contexts/list';
+
+import ListProvider from './contexts/list';
 
 export default function App(){
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
-  
-  const [list, setList] = useState<ListProps[]>([
-    {id: 1, name: 'Comprar pão', done: false},
-    {id: 2, name: 'Estudar', done: false},
-    {id: 3, name: 'Comer', done: false}
-  ])
 
   const toggleTheme = () => setTheme(theme.title === 'light' ? dark : light);
 
-  const addItem = (taskName:string) => {
+  const { list, setList } = useContext(ListContext);
 
-    // const taskId = list[list.length - 1].id + 1;
+  console.log('CONTEXT LIST', list);
+
+  const addItem = (taskName:string) => {
 
     const updateList = [...list];
     updateList.push({
@@ -54,25 +48,39 @@ export default function App(){
     
   }
 
+  const clearCompletedItem = () => {
+    const activeItems = list.filter((item) => item.done === false)
+
+    console.log(activeItems)
+    console.log(list)
+
+    setList(activeItems);
+  }
+
   return(
+    
     <ThemeProvider theme={theme}>
-        <Container>
-          <Header selectedTheme={theme.title} toggleTheme={toggleTheme} />
+            <ListProvider>
+              <Container>
+                <Header selectedTheme={theme.title} toggleTheme={toggleTheme} />
 
-          <Input addItem={addItem} />
+                <Input addItem={addItem} />
 
-          <AreaList>
-            {list.map((item) => (
-              <ListItem 
-                key={item.id} 
-                item={item}
-                deleteItem={deleteItem} 
-              />
-            ))}
-          </AreaList>
-          <Footer />
-        </Container>
-        <GlobalStyles />
-    </ThemeProvider>
+                <AreaList>
+                  {/* {list.map((item) => (
+                    <ListItem 
+                      key={item.id} 
+                      item={item}
+                      deleteItem={deleteItem} 
+                    />
+                  ))} */}
+                </AreaList>
+                <Footer
+                  clearCompletedItem={clearCompletedItem} 
+                />
+              </Container>
+              <GlobalStyles />
+            </ListProvider>
+      </ThemeProvider>
   )
 }

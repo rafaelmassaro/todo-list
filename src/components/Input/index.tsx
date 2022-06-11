@@ -1,19 +1,18 @@
-import { KeyboardEvent, useState } from "react";
+import { KeyboardEvent, useContext, useState } from "react";
+import { TodoContext } from "../../contexts/todocontext";
 
 import { Container } from "./styles";
 
-interface Props {
-    addItem: (task:string) => void;
-}
-
-export function Input({addItem}: Props){
+export function Input(){
     const [newTask, setNewTask] = useState('');
+
+    const {addTodo} = useContext(TodoContext);
 
     function handleKeyUp(e: KeyboardEvent){
 
-        if(e.code == "Enter" && newTask !== ''){
+        if(e.code === "Enter" && newTask !== ''){
             
-            addItem(newTask);
+            addTodo(newTask);
             setNewTask('');
         }
 

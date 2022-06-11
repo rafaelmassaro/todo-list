@@ -1,10 +1,8 @@
 import { ClearButton, Container, CountItems, OptionsArea } from "./styles";
 
-interface Props{
-    clearCompletedItem: () => void;
-}
 
-export function Footer({ clearCompletedItem}:Props){
+
+export function Footer(){
     
     return(
         <Container>
@@ -25,7 +23,7 @@ export function Footer({ clearCompletedItem}:Props){
             </OptionsArea>
 
             <ClearButton
-                onClick={clearCompletedItem}
+                // onClick={clearCompletedItem}
             >
                 Clear Completed
             </ClearButton>

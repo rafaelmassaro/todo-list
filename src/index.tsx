@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import TodoContextProvider from './contexts/todocontext';
 import './index.css';
 
 const root = ReactDOM.createRoot(
@@ -8,6 +9,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <TodoContextProvider>
+      <App />
+    </TodoContextProvider>
   </React.StrictMode>
 );

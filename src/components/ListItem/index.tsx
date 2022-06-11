@@ -3,22 +3,22 @@ import { CustomCheckbox } from "../CustomCheckbox"
 import { Container } from "./styles"
 
 import iconCross from '../../assets/images/icon-cross.svg';
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 interface Props{
     item: ListProps;
 }
 
 export function ListItem({item}:Props){
-    
 
     const { deleteTodo, completeTodo } = useContext(TodoContext);
+
 
     
     return(
         <Container>
-            <CustomCheckbox completeTodo={completeTodo}>
-                {item.name} - {String(item.done)}
+            <CustomCheckbox checkedItem={item.done} completeTodo={() => completeTodo(item.id)}>
+                {item.name}
             </CustomCheckbox>
 
             <button
